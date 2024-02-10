@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DrownpourConfiguration {
+public class DownpourConfiguration {
 
     @Value("${configuration.weather.service}")
     private String weatherService;
