@@ -17,7 +17,9 @@ public class HttpClient {
     public static JsonObject sendGetRequest(String url) {
         try {
             HttpGet request = new HttpGet(url);
+            log.info(String.valueOf(request));
             try (CloseableHttpResponse response = client.execute(request)) {
+                log.info(response.toString());
                 String jsonResponse = EntityUtils.toString(response.getEntity());
                 Gson gson = new Gson();
                 return gson.fromJson(jsonResponse, JsonObject.class);
