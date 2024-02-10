@@ -3,11 +3,13 @@ package com.cobra.services;
 import com.cobra.models.BasicMeasurements;
 import com.cobra.utils.HttpClient;
 import com.google.gson.JsonObject;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Service
 public class ImgwApi implements WeatherDataService {
     public static final String GODZINA_POMIARU = "godzina_pomiaru";
     public static final String SUMA_OPADU = "suma_opadu";
