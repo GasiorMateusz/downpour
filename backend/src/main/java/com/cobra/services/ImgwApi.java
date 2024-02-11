@@ -26,6 +26,10 @@ public class ImgwApi implements WeatherDataService {
         }
         String dateTimeString = currentDate + "T" + response.get(GODZINA_POMIARU).getAsString() + ":00";
         LocalDateTime timestamp = LocalDateTime.parse(dateTimeString);
-        return new BasicMeasurements(response.get(SUMA_OPADU).getAsFloat(), Timestamp.valueOf(timestamp));
+        return new BasicMeasurements(
+                null,
+                city,
+                response.get(SUMA_OPADU).getAsFloat(),
+                Timestamp.valueOf(timestamp));
     }
 }
