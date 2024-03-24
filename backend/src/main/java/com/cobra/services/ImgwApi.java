@@ -2,6 +2,8 @@ package com.cobra.services;
 
 import com.cobra.models.BasicMeasurements;
 import com.cobra.utils.HttpClient;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ public class ImgwApi implements WeatherDataService {
 
     @Override
     public BasicMeasurements getBasicMeasurementsForCity(String city) {
-        JsonObject response = HttpClient.sendGetRequest(baseUrl + city);
+        JsonObject response = Objects.requireNonNull(HttpClient.sendGetRequest(baseUrl + city)).getAsJsonObject();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String currentDate = now.format(formatter);

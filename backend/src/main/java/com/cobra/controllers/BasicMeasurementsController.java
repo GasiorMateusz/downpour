@@ -33,7 +33,7 @@ public class BasicMeasurementsController {
     @GetMapping("/location")
     public String getBasicMeasurementsForAllStations(){
         log.info("Basic measurements requested for ALL stations ");
-        List<BasicMeasurements> basicMeasurements = weatherDataService.getBasicMeasurementsForAllCities();//TODO
+        List<BasicMeasurements> basicMeasurements = weatherDataService.getBasicMeasurementsForAllCities();
         return gson.toJson(basicMeasurements);
     }
 
