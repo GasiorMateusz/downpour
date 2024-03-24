@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 public class ImgwApi implements WeatherDataService {
@@ -16,7 +17,7 @@ public class ImgwApi implements WeatherDataService {
     String baseUrl = "https://danepubliczne.imgw.pl/api/data/synop/station/";
 
     @Override
-    public BasicMeasurements getBasicMeasurements(String city) {
+    public BasicMeasurements getBasicMeasurementsForCity(String city) {
         JsonObject response = HttpClient.sendGetRequest(baseUrl + city);
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -31,5 +32,10 @@ public class ImgwApi implements WeatherDataService {
                 city,
                 response.get(SUMA_OPADU).getAsFloat(),
                 Timestamp.valueOf(timestamp));
+    }
+
+    @Override
+    public List<BasicMeasurements> getBasicMeasurementsForAllCities() {
+        return null;
     }
 }

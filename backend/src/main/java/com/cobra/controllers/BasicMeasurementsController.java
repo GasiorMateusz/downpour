@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/BasicMeasurements")
@@ -21,10 +23,17 @@ public class BasicMeasurementsController {
         this.weatherDataService = weatherDataService;
     }
 
-    @GetMapping("/{city}")
-    public String getBasicMeasurementsForCity(@PathVariable String city){
-        log.info("Basic measurements requested for city " + city);
-        BasicMeasurements basicMeasurements = weatherDataService.getBasicMeasurements(city);
+    @GetMapping("/location/{station}")
+    public String getBasicMeasurementsForStation(@PathVariable String station){
+        log.info("Basic measurements requested for station: " + station);
+        BasicMeasurements basicMeasurements = weatherDataService.getBasicMeasurementsForCity(station);
+        return gson.toJson(basicMeasurements);
+    }
+
+    @GetMapping("/location")
+    public String getBasicMeasurementsForAllStations(){
+        log.info("Basic measurements requested for ALL stations ");
+        List<BasicMeasurements> basicMeasurements = weatherDataService.getBasicMeasurementsForAllCities();//TODO
         return gson.toJson(basicMeasurements);
     }
 
