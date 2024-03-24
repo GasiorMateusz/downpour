@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class ImgwApi implements WeatherDataService {
@@ -66,5 +67,13 @@ public class ImgwApi implements WeatherDataService {
             );
         }
         return cities;
+    }
+
+    @Override
+    public List<BasicMeasurements> getBasicMeasurementsRainfallGreaterThan(float amount) {
+        List<BasicMeasurements> allCities = getBasicMeasurementsForAllCities();
+        return allCities.stream()
+                .filter(c -> c.getRainfall() > amount)
+                .collect(Collectors.toList());
     }
 }

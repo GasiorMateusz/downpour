@@ -37,4 +37,12 @@ public class BasicMeasurementsController {
         return gson.toJson(basicMeasurements);
     }
 
+    @GetMapping("/location/rainfall/{amount}")
+    public String getBasicMeasurementsRainfallGreaterThan(@PathVariable String amount){
+        log.info("Requested basic measurements with rainfall greater than " + amount);
+        List<BasicMeasurements> basicMeasurements = weatherDataService.getBasicMeasurementsRainfallGreaterThan(
+                Float.parseFloat(amount));
+        return gson.toJson(basicMeasurements);
+    }
+
 }

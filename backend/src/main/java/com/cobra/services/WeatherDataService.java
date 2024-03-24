@@ -9,4 +9,6 @@ public interface WeatherDataService {
     BasicMeasurements getBasicMeasurementsForCity(String city);
 
     List<BasicMeasurements> getBasicMeasurementsForAllCities();
+
+    List<BasicMeasurements> getBasicMeasurementsRainfallGreaterThan(float amount);
 }
