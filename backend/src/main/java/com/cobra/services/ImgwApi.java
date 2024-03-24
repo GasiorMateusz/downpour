@@ -19,6 +19,7 @@ public class ImgwApi implements WeatherDataService {
     public static final String GODZINA_POMIARU = "godzina_pomiaru";
     public static final String SUMA_OPADU = "suma_opadu";
     public static final String STACJA = "stacja";
+    public static final String NULL = "null";
 
     String baseUrl = "https://danepubliczne.imgw.pl/api/data/synop/station/";
 
@@ -47,11 +48,12 @@ public class ImgwApi implements WeatherDataService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String currentDate = now.format(formatter);
         List<BasicMeasurements> cities = new ArrayList<>();
-        for (JsonElement element: response
-             ) {
+        for (JsonElement element : response
+        ) {
             JsonObject city = element.getAsJsonObject();
             if (city == null || !city.has(GODZINA_POMIARU) || !city.has(SUMA_OPADU)) {
-                throw new RuntimeException("No time or rainfall");
+                throw new RuntimeException("No time or rainfall for "
+                        + (city != null ? city.get(STACJA).getAsString() : NULL));
             }
             String dateTimeString = currentDate + "T" + city.get(GODZINA_POMIARU).getAsString() + ":00";
             LocalDateTime timestamp = LocalDateTime.parse(dateTimeString);
