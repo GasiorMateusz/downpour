@@ -5,7 +5,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 
 @Document
@@ -13,8 +13,8 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class BasicMeasurements {
     @Id
-    private Long id;
+    public String id;
     private String stationName;
     private float rainfall;
-    private Timestamp measureTime;
+    private Date measureTime;
 }
