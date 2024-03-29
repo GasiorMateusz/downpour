@@ -47,9 +47,10 @@ public class BasicMeasurementsController {
     }
 
     @PostMapping("/")
-    public BasicMeasurements saveBasicMeasurements(@RequestBody BasicMeasurements measurements) {
-        log.info("Saving to db: " + measurements);
-        return basicMeasurementsDAO.create(measurements);
+    public List<BasicMeasurements> saveBasicMeasurements(@RequestBody List<BasicMeasurements> measurements) {
+        log.info("Saving  %s records to db".formatted(measurements.size()));
+        basicMeasurementsDAO.save(measurements);
+        return measurements;
     }
 
     @GetMapping("/stationName/{stationName}")

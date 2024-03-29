@@ -3,17 +3,15 @@ package com.cobra.repository;
 import com.cobra.models.BasicMeasurements;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface BasicMeasurementsDAO {
-    BasicMeasurements create(BasicMeasurements basicMeasurements);
-
-    BasicMeasurements update(BasicMeasurements basicMeasurements);
-
-    void deleteByStationName(String stationName);
+    List<BasicMeasurements> save(List<BasicMeasurements> basicMeasurements);
 
     Optional<BasicMeasurements> findByStationName(String measurementsId);
 
     Optional<BasicMeasurements> findById(String measurementsId);
+
 }
