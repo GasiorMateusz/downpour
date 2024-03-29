@@ -1,12 +1,20 @@
 package com.cobra.configuration;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.cobra.services.ImgwApi;
+import com.cobra.services.WeatherDataService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class ImgwConfiguration {
 
-    @Value("${configuration.weather.service}")
-    private String weatherService;
-
+    @Primary
+    @Bean
+    @ConditionalOnProperty(name = "configuration.weather.service", havingValue = "imgw")
+    public WeatherDataService weatherDataService() {
+        return new ImgwApi();
+    }
 }
+

@@ -22,7 +22,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 public class MongoConfig {
     @Value("${db.name}")
     private String dbName;
-    @Value("${db.connectionString}")
+    @Value("${db.connection.string}")
     private String connectionString;
 
     @Primary
