@@ -14,4 +14,6 @@ public interface BasicMeasurementsDAO {
 
     Optional<BasicMeasurements> findById(String measurementsId);
 
+    void deleteById(String id);
+
 }

@@ -69,4 +69,10 @@ public class BasicMeasurementsController {
         return foundMeasurements;
     }
 
+    @DeleteMapping("/delete/id/{measurementsId}")
+    public void deleteBasicMeasurementsById(@PathVariable String measurementsId) {
+        basicMeasurementsDAO.deleteById(measurementsId);
+        log.info("deleted measurements for id: %s ".formatted(measurementsId));
+    }
+
 }
