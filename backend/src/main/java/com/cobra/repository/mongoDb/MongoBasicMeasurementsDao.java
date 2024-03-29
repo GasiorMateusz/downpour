@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MongoDao extends BasicMeasurementsDAO, MongoRepository<BasicMeasurements, String> {
+public interface MongoBasicMeasurementsDao extends BasicMeasurementsDAO, MongoRepository<BasicMeasurements, String> {
 
 
     default List<BasicMeasurements> save(List<BasicMeasurements> basicMeasurements) {

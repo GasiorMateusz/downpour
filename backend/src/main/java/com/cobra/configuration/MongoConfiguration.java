@@ -19,7 +19,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Configuration
 @Slf4j
 @EnableMongoRepositories(basePackages = "com.cobra.repository.mongoDb")
-public class MongoConfig {
+public class MongoConfiguration {
     @Value("${db.name}")
     private String dbName;
     @Value("${db.connection.string}")
