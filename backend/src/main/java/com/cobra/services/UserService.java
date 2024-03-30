@@ -52,4 +52,17 @@ public class UserService implements UserDetailsService {
     public Optional<User> getUserById(String id){
         return userDao.getById(id);
     }
+
+    public List<BasicMeasurements> getUsersMeasurements(String username) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        Optional<User> u = getUserById(userDetails.getId());
+        if (u.isPresent()){
+            User user = u.get();
+            return user.getBasicMeasurements();
+        }
+        else return null;
+    }
 }

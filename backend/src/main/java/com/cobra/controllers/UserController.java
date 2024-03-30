@@ -23,9 +23,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{userName}")
+    @GetMapping("/{username}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-    public UserDetails getUserByName(@PathVariable("userName") String userName) {
+    public UserDetails getUserByName(@PathVariable("username") String userName) {
         return userService.loadUserByUsername(userName);
     }
 
@@ -33,6 +33,12 @@ public class UserController {
     public User saveUsersMeasurements(@RequestBody List<BasicMeasurements> measurements){
         log.info("Save users measurements " + measurements);
         return userService.saveUsersMeasurements(measurements);
+    }
+
+    @GetMapping("/{username}/measurements")
+    public List<BasicMeasurements> getUsersMeasurements(@PathVariable("username") String username){
+        log.info("Get users measurements " + username);
+        return userService.getUsersMeasurements(username);
     }
 
 
