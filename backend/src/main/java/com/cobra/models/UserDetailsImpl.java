@@ -1,6 +1,5 @@
-package com.cobra.services;
+package com.cobra.models;
 
-import com.cobra.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

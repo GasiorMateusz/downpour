@@ -11,7 +11,7 @@ import com.cobra.payloads.response.UserInfoResponse;
 import com.cobra.repository.RoleDao;
 import com.cobra.repository.UserDao;
 import com.cobra.security.JwtUtils;
-import com.cobra.services.UserDetailsImpl;
+import com.cobra.models.UserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

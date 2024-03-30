@@ -1,6 +1,7 @@
 package com.cobra.services;
 
 import com.cobra.models.User;
+import com.cobra.models.UserDetailsImpl;
 import com.cobra.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserService implements UserDetailsService {
     @Autowired
     UserDao userDao;
 

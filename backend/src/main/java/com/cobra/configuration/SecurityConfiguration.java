@@ -2,7 +2,7 @@ package com.cobra.configuration;
 
 import com.cobra.security.AuthEntryPointJwt;
 import com.cobra.security.AuthTokenFilter;
-import com.cobra.services.UserDetailsServiceImpl;
+import com.cobra.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 //prePostEnabled = true) // by default
 public class SecurityConfiguration {
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    UserService userDetailsService;
 
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;

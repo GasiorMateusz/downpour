@@ -1,6 +1,6 @@
 package com.cobra.security;
 
-import com.cobra.services.UserDetailsImpl;
+import com.cobra.models.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
