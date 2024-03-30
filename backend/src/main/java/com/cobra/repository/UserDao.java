@@ -15,4 +15,6 @@ public interface UserDao {
     Boolean existsByEmail(String email);
 
     User save(User user);
+
+    Optional<User> getById(String id);
 }

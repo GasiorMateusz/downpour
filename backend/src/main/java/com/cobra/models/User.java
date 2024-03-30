@@ -8,8 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "users")
 @Data
@@ -31,7 +31,10 @@ public class User {
     private String password;
 
     @DBRef
-    private Set<Role> roles = new HashSet<>();
+    private List<Role> roles = new ArrayList<>();
+
+    @DBRef
+    private List<BasicMeasurements> basicMeasurements = new ArrayList<>();
 
     public User() {
     }

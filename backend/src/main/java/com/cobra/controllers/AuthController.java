@@ -4,6 +4,7 @@ package com.cobra.controllers;
 import com.cobra.enums.ERole;
 import com.cobra.models.Role;
 import com.cobra.models.User;
+import com.cobra.models.UserDetailsImpl;
 import com.cobra.payloads.request.LoginRequest;
 import com.cobra.payloads.request.SignupRequest;
 import com.cobra.payloads.response.MessageResponse;
@@ -11,7 +12,6 @@ import com.cobra.payloads.response.UserInfoResponse;
 import com.cobra.repository.RoleDao;
 import com.cobra.repository.UserDao;
 import com.cobra.security.JwtUtils;
-import com.cobra.models.UserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,9 +25,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -91,8 +90,8 @@ public class AuthController {
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 
-        Set<String> strRoles = signUpRequest.getRoles();
-        Set<Role> roles = new HashSet<>();
+        List<String> strRoles = signUpRequest.getRoles();
+        List<Role> roles = new ArrayList<>();
 
         if (strRoles == null) {
             Role userRole = roleDao.findByName(ERole.ROLE_USER)
