@@ -53,6 +53,7 @@ public class BasicMeasurementsController {
     @PostMapping("/")
     @PreAuthorize("hasRole('MODERATOR')")
     public List<BasicMeasurements> saveBasicMeasurements(@RequestBody List<BasicMeasurements> measurements) {
+
         log.info("Saving  %s records to db".formatted(measurements.size()));
         basicMeasurementsDAO.save(measurements);
         return measurements;
