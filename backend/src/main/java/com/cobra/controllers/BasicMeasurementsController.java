@@ -5,6 +5,7 @@ import com.cobra.repository.BasicMeasurementsDAO;
 import com.cobra.services.WeatherDataService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class BasicMeasurementsController {
     }
 
     @GetMapping("/location/{station}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String requestBasicMeasurementsForStation(@PathVariable String station) {
         log.info("Basic measurements requested for station: " + station);
         BasicMeasurements basicMeasurements = weatherDataService.getBasicMeasurementsForCity(station);
@@ -32,6 +34,7 @@ public class BasicMeasurementsController {
     }
 
     @GetMapping("/location")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String requestBasicMeasurementsForAllStations() {
         log.info("Basic measurements requested for ALL stations ");
         List<BasicMeasurements> basicMeasurements = weatherDataService.getBasicMeasurementsForAllCities();
@@ -39,6 +42,7 @@ public class BasicMeasurementsController {
     }
 
     @GetMapping("/location/rainfall/{amount}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String requestBasicMeasurementsRainfallGreaterThan(@PathVariable String amount) {
         log.info("Requested basic measurements with rainfall greater than " + amount);
         List<BasicMeasurements> basicMeasurements = weatherDataService.getBasicMeasurementsRainfallGreaterThan(
@@ -47,6 +51,7 @@ public class BasicMeasurementsController {
     }
 
     @PostMapping("/")
+    @PreAuthorize("hasRole('MODERATOR')")
     public List<BasicMeasurements> saveBasicMeasurements(@RequestBody List<BasicMeasurements> measurements) {
         log.info("Saving  %s records to db".formatted(measurements.size()));
         basicMeasurementsDAO.save(measurements);
@@ -54,6 +59,7 @@ public class BasicMeasurementsController {
     }
 
     @GetMapping("/stationName/{stationName}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public Optional<BasicMeasurements> getBasicMeasurementsByStationName(@PathVariable String stationName) {
         Optional<BasicMeasurements> foundMeasurements = basicMeasurementsDAO.findByStationName(stationName);
         log.info("Get measurements for station name: %s ".formatted(stationName));
@@ -62,6 +68,7 @@ public class BasicMeasurementsController {
     }
 
     @GetMapping("/id/{measurementsId}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public Optional<BasicMeasurements> getBasicMeasurementsById(@PathVariable String measurementsId) {
         Optional<BasicMeasurements> foundMeasurements = basicMeasurementsDAO.findById(measurementsId);
         log.info("Get measurements for id: %s ".formatted(measurementsId));
@@ -69,6 +76,7 @@ public class BasicMeasurementsController {
         return foundMeasurements;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/id/{measurementsId}")
     public void deleteBasicMeasurementsById(@PathVariable String measurementsId) {
         basicMeasurementsDAO.deleteById(measurementsId);
